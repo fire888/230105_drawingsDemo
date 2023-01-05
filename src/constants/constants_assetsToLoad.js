@@ -1,9 +1,9 @@
-import nx from '../assets/nx.jpg'
-import px from '../assets/px.jpg'
-import nz from '../assets/nz.jpg'
-import pz from '../assets/pz.jpg'
-import ny from '../assets/ny.jpg'
-import py from '../assets/py.jpg'
+// import nx from '../assets/nx.jpg'
+// import px from '../assets/px.jpg'
+// import nz from '../assets/nz.jpg'
+// import pz from '../assets/pz.jpg'
+// import ny from '../assets/ny.jpg'
+// import py from '../assets/py.jpg'
 
 import d01Src from '../assets/drawImgs/01.jpg'
 import d02Src from '../assets/drawImgs/02.jpg'
@@ -121,9 +121,9 @@ export const ASSETS_TO_LOAD = [
     //    filename: truckShadow,
     //    key: 'truckShadowMap'
     //},
-    {
-        type: 'cubeTextures',
-        filename: [px, nx, py, ny, nz, pz],
-        key: 'skyBox'
-    },
+    // {
+    //     type: 'cubeTextures',
+    //     filename: [px, nx, py, ny, nz, pz],
+    //     key: 'skyBox'
+    // },
 ]

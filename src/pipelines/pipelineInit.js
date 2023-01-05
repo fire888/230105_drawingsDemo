@@ -1,26 +1,20 @@
-import {checkDevice} from "../helpers/checkDevice";
-import {createStudio} from "../entities/studio";
-import {createLoadManager} from "../helpers/loadManager";
-import {ASSETS_TO_LOAD } from "../constants/constants_assetsToLoad";
+import {createStudio} from "../entities/studio"
 import {startFrameUpdater} from "../helpers/createFrameUpater";
 import {createImagesGallery} from '../entities/imgsGallery'
+const TWEEN = require('tween.js');
 
 const root = {}
 
+
+
+
 export const initApp = () => {
-    root.device = checkDevice()
     root.studio = createStudio(root)
-    root.loadManager = createLoadManager()
-
-    root.loadManager.startLoad(ASSETS_TO_LOAD).then(assets => {
-        root.assets = assets
-        root.studio.setBack(assets.skyBox)
-
-        root.frameUpdater = startFrameUpdater(root)
-        root.frameUpdater.on(n => {
-            root.studio.render()
-        })
-
-        createImagesGallery(root)
+    root.TWEEN = TWEEN
+    root.frameUpdater = startFrameUpdater(root)
+    root.frameUpdater.on(n => {
+        TWEEN.update()
+        root.studio.render()
     })
+    createImagesGallery(root)
 }
