@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cybertruck</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name='viewport' content='width=device-width, user-scalable=no'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        *:focus {
+            outline: 0 !important;
+        }
+        body {
+            overflow: hidden;
+        }
+        .start-screen {
+            color: #317bfd;
+            position: absolute;
+            z-index: 100;
+            background: #050c18;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        .load-container {
+            margin-top: 5vh;
+            min-width: 100%;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .load-wrapper {
+            min-width: 100vw;
+        }
+        .progress-wrapper {
+            max-width: 50vw;
+            transform: translate(50%, 0);
+            margin-top: 10px;
+            min-height: 5px;
+            overflow: hidden;
+            border-radius: 5px;
+            border: #317bfd 1px solid;
+        }
+        .progress {
+            width: 200%;
+            min-height: 5px;
+            background: url(imgs/progress-img.png);
+            margin-left: -100%;
+        }
+        .canvas-wrapper {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    </head>
+    <body>
+<!--        <div class='start-screen'>-->
+<!--            <div class = "load-container">-->
+<!--                <div class="start hidden"></div>-->
+<!--                <div class="load-wrapper">-->
+<!--                    <div class="progress-wrapper">-->
+<!--                        <div class="progress"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    <div class="canvas-wrapper">
+        <canvas id='webgl-canvas'></canvas>
+<!--        <div class="arrow-top control hidden"></div>-->
+<!--        <div class="arrow-bottom control hidden"></div>-->
+<!--        <div class="arrow-left control hidden"></div>-->
+<!--        <div class="arrow-right control hidden"></div>-->
+<!--        <div class="arrow-jump control hidden"></div>-->
+    </div>
+    </body>
+</html>
