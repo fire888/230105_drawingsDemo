@@ -5,6 +5,12 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 const color = new THREE.Color( 0, 0, 0 );
 const ARR_SLIDES = []
 
+const pause = t => new Promise(res => {
+    setTimeout(() => {
+        requestAnimationFrame(res)
+    }, t)
+})
+
 const gallery = (root) => {
     const { TWEEN } = root
 
@@ -136,12 +142,6 @@ const gallery = (root) => {
         if (!ARR_SLIDES[n]) {
             n = 0
         }
-
-        // if (ARR_SLIDES[n - 1]) {
-
-        // }
-
-
         const { dr, map } = ARR_SLIDES[n]
 
         map.visible = true
@@ -152,17 +152,14 @@ const gallery = (root) => {
         dr.scene.children[0].material.color.r = 1
         dr.scene.children[0].material.color.g = 1
 
-
-
         await moveImg(dr, map)
+        await pause(15)
         await switchImgToDr(dr, map)
-
+        await pause(15)
         iterate(++n).then()
-
+        await pause(15)
         moveDr(dr, map).then()
-        //iterate(++n).then()
     }
-
     iterate(0).then()
 }
 
