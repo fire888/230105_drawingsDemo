@@ -185,11 +185,6 @@ export const createImagesGallery = (root) => {
                     opacity: 1,
                 })
                 const mesh = new THREE.Mesh(geom, mat)
-                mesh.position.set(
-                    -15 + (n * 5),
-                    15,
-                    -10,
-                )
                 mesh.visible = false
                 root.studio.addToScene(mesh)
 
