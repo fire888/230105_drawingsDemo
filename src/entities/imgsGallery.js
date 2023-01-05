@@ -58,11 +58,7 @@ const gallery = (root) => {
                 newPos.push(geom.attributes.position.array[i] + Math.random() * 5 - 2.5)
             }
 
-            dr.scene.scale.set(
-               50,
-               50,
-               50,
-            )
+            dr.scene.scale.set(50, 50, 50)
             dr.scene.visible = true
             dr.scene.children[0].material.color.r = 1
             dr.scene.children[0].material.color.g = 1
@@ -77,7 +73,7 @@ const gallery = (root) => {
                 b: 0,
             }
             const t = new TWEEN.Tween(data)
-                .to({t: 0, c: .3, b: .5, s: 2, s2: 50, phase: 1}, 1500)
+                .to({t: 0, c: 1, b: .5, s: 2, s2: 50, phase: 1}, 1500)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .onUpdate(() => {
                     for (let i = 0; i < geom.attributes.position.array.length; ++i) {
@@ -98,17 +94,15 @@ const gallery = (root) => {
                     )
                     dr.scene.children[0].material.color.r = data.c
                     dr.scene.children[0].material.color.g = data.c
-                    dr.scene.children[0].material.color.b = data.c
                     color.r = data.b
                     color.g = data.b
                     color.b = data.b
-                    //root.studio.setBackColor(color)
                 })
                 .start()
             setTimeout(() => {
                 map.visible = false
                 res()
-            }, 1600)
+            }, 2000)
         })
     }
 
@@ -117,17 +111,13 @@ const gallery = (root) => {
             const data = {
                 rZ: 0,
                 rY: 0,
-                s: 50,
                 z: 0,
-                c: 0,
             }
 
             const t = new TWEEN.Tween(data)
                 .to({
                     rZ: Math.random() * Math.PI * 2 - Math.PI,
                     rY: (Math.floor(Math.random() * 3) - 1) * Math.PI,
-                    s: 1000,
-                    c: 0,
                     z: 40
                 }, 4000)
                 .easing(TWEEN.Easing.Quadratic.Out)
@@ -147,6 +137,11 @@ const gallery = (root) => {
             n = 0
         }
 
+        // if (ARR_SLIDES[n - 1]) {
+
+        // }
+
+
         const { dr, map } = ARR_SLIDES[n]
 
         map.visible = true
@@ -154,16 +149,18 @@ const gallery = (root) => {
         dr.scene.visible = false
         dr.scene.rotation.set(0, 0, 0)
         dr.scene.position.set(0, -3, 0)
-        dr.scene.children[0].material.color.r = .8
-        dr.scene.children[0].material.color.g = .8
-        dr.scene.children[0].material.color.b = .8
+        dr.scene.children[0].material.color.r = 1
+        dr.scene.children[0].material.color.g = 1
+
+
 
         await moveImg(dr, map)
         await switchImgToDr(dr, map)
 
         iterate(++n).then()
 
-        await moveDr(dr, map)
+        moveDr(dr, map).then()
+        //iterate(++n).then()
     }
 
     iterate(0).then()
@@ -185,7 +182,7 @@ export const createImagesGallery = (root) => {
         }
         imagesLoader.load(DR_IMG_SRC[n + ''], map => {
             gltfLoader.load(DR_SRC[n + ''], dr => {
-                const mat = new THREE.MeshBasicMaterial({
+                const mat = new THREE.MeshStandardMaterial({
                     map,
                     transparent: true,
                     opacity: 1,
@@ -202,9 +199,7 @@ export const createImagesGallery = (root) => {
                 dr.scene.visible = false
                 root.studio.addToScene(dr.scene)
 
-                ARR_SLIDES.push({
-                    dr, map: mesh,
-                })
+                ARR_SLIDES.push({dr, map: mesh})
 
                 if (!isStartGallery) {
                     gallery(root)
