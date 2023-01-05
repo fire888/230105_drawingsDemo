@@ -6,10 +6,10 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 
 const params = {
-    exposure: 1.2,
-    bloomStrength: 1.5,
+    exposure: 1,
+    bloomStrength: 3.1,
     bloomThreshold: .7,
-    bloomRadius: .5,
+    bloomRadius: .1,
 };
 
 export const createStudio = () => {
