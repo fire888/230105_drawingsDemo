@@ -40,7 +40,9 @@ import g15Src from '../assets/drawImgs/15.gltf'
 import g16Src from '../assets/drawImgs/16.gltf'
 //import d17Src from '../assets/drawImgs/17.jpg'
 //import d18Src from '../assets/drawImgs/18.jpg'
+import houseSrc from '../assets/house.glb'
 
+export const HOUSE_SRC = houseSrc
 
 export const DR_IMG_SRC = {
     '1': d01Src,

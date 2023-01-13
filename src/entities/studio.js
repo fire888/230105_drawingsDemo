@@ -6,10 +6,10 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 
 const params = {
-    exposure: 1,
-    bloomStrength: 3.1,
+    exposure: .6,
+    bloomStrength: .5,
     bloomThreshold: .7,
-    bloomRadius: .1,
+    bloomRadius: .01,
 };
 
 export const createStudio = () => {
@@ -28,12 +28,12 @@ export const createStudio = () => {
 
     const scene = new THREE.Scene()
 
-    const lightA = new THREE.AmbientLight( 0xcc99ff, .2, 1000)
+    const lightA = new THREE.AmbientLight( 0xcc99ff, .3, 1000)
     lightA.position.set( 5, 5, 5 )
     scene.add( lightA )
 
-    const light = new THREE.PointLight( 0xcc99ff, .6, 300)
-    light.position.set( 0, 0, 30)
+    const light = new THREE.PointLight( 0xcc99ff, 1.5, 300)
+    light.position.set( -100, 0, 0)
     scene.add( light )
     scene.fog = new THREE.Fog(0x000000, 0, 1000)
 
