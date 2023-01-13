@@ -224,9 +224,9 @@ const gallery = (root) => {
 
 
 const houseRotator = (root, model) => {
-    model.scene.scale.set(15, 15, 15)
-    model.scene.position.z = -110
-    model.scene.position.y = -20
+    model.scene.scale.set(18, 18, 18)
+    model.scene.position.z = -130
+    model.scene.position.y = -30
     model.scene.rotation.x = 0.5
     //model.scene.children[0].material.color = 0xffffff
     model.scene.children[0].material.color.r = 1
@@ -236,6 +236,7 @@ const houseRotator = (root, model) => {
 
     root.frameUpdater.on(() => {
         model.scene.rotation.y += .01
+        model.scene.rotation.x = Math.sin(model.scene.rotation.y * 0.7) * 0.35 + .2
     })
 }
 
