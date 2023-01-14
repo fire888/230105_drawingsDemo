@@ -1,4 +1,4 @@
-# TEST_TASK CYBER_TRUCK:house: # 
+# ANIMATION PROMO PAGE:house: # 
 
 ![language](https://img.shields.io/badge/code-es6-green.svg) 
 ![Build status](https://img.shields.io/badge/build-passing-yellow.svg) 
@@ -6,7 +6,7 @@
 ![License status](https://img.shields.io/badge/license-Beerware-green.svg) 
 
 
-[View](http://js.otrisovano.ru/cybertruck/)
+[View](http://js.otrisovano.ru/demo-drawings/)
 ------------ 
 
 

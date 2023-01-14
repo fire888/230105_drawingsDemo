@@ -18,30 +18,25 @@ const gallery = (root) => {
     const moveImg = (dr, map) => {
         return new Promise(res => {
             const data = {
-                //x: Math.random() * 100 - 5,
                 y: -200,
-                r: Math.random() * Math.PI * 2 - Math.PI,
+                rZ: Math.random() * Math.PI * 2 - Math.PI,
                 s: 20,
-                rY: -Math.PI / 2,
             }
 
             const t = new TWEEN.Tween(data)
                 .to({
-                    //x: 0,
                     y: 0,
-                    r: 0,
-                    rY: 0,
-                    s: 8,
+                    rZ: 0,
+                    s: 7.5,
                 }, 2500)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .onUpdate(() => {
                     map.position.y = data.y
-                    map.rotation.z = data.r
-                    map.rotation.y = data.rY
+                    map.rotation.z = data.rZ
                     map.scale.set(
-                        data.s,
-                        data.s,
-                        data.s,
+                         data.s,
+                         data.s,
+                         data.s,
                     )
                 })
                 .start()
@@ -72,8 +67,8 @@ const gallery = (root) => {
             const data = {
                 phase: 0,
                 s: 8,
-                s2: 2,
-                t: 1,
+                s2: 3,
+                t: 4,
                 c: .7,
                 b: 0,
             }
@@ -226,7 +221,7 @@ const houseRotator = (root, model) => {
 
     root.frameUpdater.on(() => {
         model.scene.rotation.y += .01
-        model.scene.rotation.x = Math.sin(model.scene.rotation.y * 0.7) * 0.35 + .2
+        model.scene.rotation.x = Math.sin(model.scene.rotation.y * 0.7) * 0.35 + .4
     })
 }
 
