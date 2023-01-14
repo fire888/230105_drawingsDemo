@@ -2,8 +2,6 @@ import * as THREE from 'three'
 import { DR_IMG_SRC, DR_SRC, HOUSE_SRC } from '../constants/constants_assetsToLoad'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
-
-const color = new THREE.Color( 0, 0, 0 );
 const ARR_SLIDES = []
 let HOUSE = null
 
@@ -20,7 +18,7 @@ const gallery = (root) => {
     const moveImg = (dr, map) => {
         return new Promise(res => {
             const data = {
-                x: Math.random() * 100 - 5,
+                //x: Math.random() * 100 - 5,
                 y: -200,
                 r: Math.random() * Math.PI * 2 - Math.PI,
                 s: 20,
@@ -29,7 +27,7 @@ const gallery = (root) => {
 
             const t = new TWEEN.Tween(data)
                 .to({
-                    x: 0,
+                    //x: 0,
                     y: 0,
                     r: 0,
                     rY: 0,
@@ -37,7 +35,6 @@ const gallery = (root) => {
                 }, 2500)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .onUpdate(() => {
-                    map.position.x = data.x
                     map.position.y = data.y
                     map.rotation.z = data.r
                     map.rotation.y = data.rY
@@ -67,7 +64,7 @@ const gallery = (root) => {
             }
 
             dr.scene.scale.set(50, 50, 50)
-            dr.scene.visible = true
+            //dr.scene.visible = true
             dr.scene.children[0].material.color.r = 1
             dr.scene.children[0].material.color.g = 1
             dr.scene.children[0].material.color.b = 1
@@ -81,7 +78,7 @@ const gallery = (root) => {
                 b: 0,
             }
             const t = new TWEEN.Tween(data)
-                .to({t: 0, c: 1, b: .5, s: 2, s2: 50, phase: 1}, 1500)
+                .to({t: 0.001, c: 1, b: .5, s: 2, s2: 50, phase: 1}, 1500)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .onUpdate(() => {
                     for (let i = 0; i < geom.attributes.position.array.length; ++i) {
@@ -102,13 +99,10 @@ const gallery = (root) => {
                     )
                     dr.scene.children[0].material.color.r = data.c
                     dr.scene.children[0].material.color.g = data.c
-                    color.r = data.b
-                    color.g = data.b
-                    color.b = data.b
                 })
                 .start()
             setTimeout(() => {
-                map.visible = false
+                //map.visible = false
                 res()
             }, 2000)
         })
@@ -195,11 +189,10 @@ const gallery = (root) => {
         }
         const { dr, map } = ARR_SLIDES[n]
 
-        map.visible = true
         map.material.opacity = 1
-        dr.scene.visible = false
         dr.scene.rotation.set(0, 0, 0)
         dr.scene.position.set(0, -3, 0)
+        dr.scene.scale.set(0, 0, 0)
         dr.scene.children[0].material.color.r = 1
         dr.scene.children[0].material.color.g = 1
 
@@ -216,8 +209,6 @@ const gallery = (root) => {
             await showHouse()
         }
         iterate(++n).then()
-        //await pause(15)
-        //moveDr(dr, map).then()
     }
     iterate(0).then()
 }
@@ -228,7 +219,6 @@ const houseRotator = (root, model) => {
     model.scene.position.z = -130
     model.scene.position.y = -30
     model.scene.rotation.x = 0.5
-    //model.scene.children[0].material.color = 0xffffff
     model.scene.children[0].material.color.r = 1
     model.scene.children[0].material.color.g = 1
     model.scene.children[0].material.color.b = 1
@@ -244,7 +234,6 @@ const houseRotator = (root, model) => {
 
 
 let isStartGallery = false
-let isHouseLoaded = false
 
 export const createImagesGallery = (root) => {
     const imagesLoader = new THREE.TextureLoader()
@@ -255,27 +244,23 @@ export const createImagesGallery = (root) => {
         if (!DR_IMG_SRC[n + '']) {
             return
         }
-        imagesLoader.load(DR_IMG_SRC[n + ''], map => {
+        imagesLoader.load(DR_IMG_SRC[n + ''], mapImg => {
             gltfLoader.load(DR_SRC[n + ''], dr => {
-                // const mat = new THREE.MeshStandardMaterial({
-                //     map,
-                //     transparent: true,
-                //     opacity: 1,
-                // })
                 const mat = new THREE.MeshBasicMaterial({
                     color: 0x9e88ad,
-                    map,
+                    map: mapImg,
                     transparent: true,
                     opacity: 1,
                 })
-                const mesh = new THREE.Mesh(geom, mat)
-                mesh.visible = false
-                root.studio.addToScene(mesh)
+                const map = new THREE.Mesh(geom, mat)
+                map.position.y = 500
+                map.position.z = -10
+                root.studio.addToScene(map)
 
-                dr.scene.visible = false
+                dr.scene.position.z = 500
                 root.studio.addToScene(dr.scene)
 
-                ARR_SLIDES.push({dr, map: mesh})
+                ARR_SLIDES.push({dr, map})
 
                 if (!isStartGallery) {
                     gallery(root)
